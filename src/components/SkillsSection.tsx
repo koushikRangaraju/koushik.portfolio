@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import { gsap } from "gsap";
 
 // --- ICONS (react-icons mapping) ---
 import { 
@@ -71,22 +72,14 @@ export default function SkillsSection() {
   useEffect(() => {
     if (!wheelRef.current) return;
 
-    // Native Web Animations API (Runs on GPU compositor thread = MAX FPS)
-    const animation = wheelRef.current.animate(
-      [
-        { transform: "rotate(0deg) translateZ(0)" },
-        { transform: "rotate(360deg) translateZ(0)" }
-      ],
-      {
-        duration: 20000, // Increased to 20s for a more majestic and smooth "normal" rotation
-        iterations: Infinity,
-        easing: "linear"
-      }
-    );
+    // Create a continuous rotation animation
+    const rotation = gsap.to(wheelRef.current, {
+      rotation: 360,
+      duration: 20,
+      repeat: -1,
+      ease: "none",
+    });
 
-    let currentRate = 1;
-    let targetRate = 1;
-    let rafId: number;
     let lastScrollY = window.scrollY;
     let lastScrollTime = Date.now();
     let resetTimer: ReturnType<typeof setTimeout>;
@@ -99,27 +92,33 @@ export default function SkillsSection() {
       lastScrollTime = now;
       
       // Calculate scroll speed (boost factor)
-      const scrollVelocity = Math.min((dy / dtScroll) * 12, 35); // Slightly more sensitive but capped
-      targetRate = 1 + scrollVelocity; 
+      const scrollVelocity = Math.min((dy / dtScroll) * 12, 35);
+      const targetTimeScale = 1 + scrollVelocity; 
+      
+      // Smoothly animate the timeScale (speed multiplier) using GSAP
+      gsap.to(rotation, {
+        timeScale: targetTimeScale,
+        duration: 0.4,
+        ease: "power2.out",
+        overwrite: true
+      });
       
       clearTimeout(resetTimer);
-      // Quickly decay back to normal speed when scroll stops
-      resetTimer = setTimeout(() => { targetRate = 1; }, 150);
+      // Decay back to normal speed smoothly
+      resetTimer = setTimeout(() => { 
+        gsap.to(rotation, {
+          timeScale: 1,
+          duration: 0.8,
+          ease: "power2.inOut",
+          overwrite: true
+        });
+      }, 100);
     };
 
-    const updatePlaybackRate = () => {
-      // Smoother LERP for playback rate (0.08 instead of 0.15 for more fluid transitions)
-      currentRate += (targetRate - currentRate) * 0.08;
-      animation.playbackRate = currentRate;
-      rafId = requestAnimationFrame(updatePlaybackRate);
-    };
-
-    rafId = requestAnimationFrame(updatePlaybackRate);
     window.addEventListener("scroll", onScroll, { passive: true });
     
     return () => {
-      animation.cancel();
-      cancelAnimationFrame(rafId);
+      rotation.kill();
       window.removeEventListener("scroll", onScroll);
       clearTimeout(resetTimer);
     };
