@@ -1,0 +1,41 @@
+
+> my-portfolio@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.5
+
+   Creating an optimized production build ...
+Failed to compile.
+
+./src/components/SkillsSection.tsx
+Error: 
+  [31mx[0m You're importing a component that needs useRef. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+  [31m|[0m Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mC:\anti gravity.project\my-portfolio\src\components\SkillsSection.tsx[0m:1:1]
+ [2m1[0m | import { useRef, useEffect, useState } from "react";
+   : [31;1m         ^^^^^^[0m
+ [2m2[0m | import { motion, useScroll, useVelocity, useSpring, useTransform, useAnimationFrame, useMotionValue } from "framer-motion";
+ [2m3[0m | 
+ [2m4[0m | const wrap = (min: number, max: number, v: number) => {
+   `----
+
+  [31mx[0m You're importing a component that needs useState. It only works in a Client Component but none of its parents are marked with "use client", so they're Server Components by default.
+  [31m|[0m Learn more: https://nextjs.org/docs/getting-started/react-essentials
+  [31m|[0m 
+  [31m|[0m 
+   ,-[[36;1;4mC:\anti gravity.project\my-portfolio\src\components\SkillsSection.tsx[0m:1:1]
+ [2m1[0m | import { useRef, useEffect, useState } from "react";
+   : [31;1m                            ^^^^^^^^[0m
+ [2m2[0m | import { motion, useScroll, useVelocity, useSpring, useTransform, useAnimationFrame, useMotionValue } from "framer-motion";
+ [2m3[0m | 
+ [2m4[0m | const wrap = (min: number, max: number, v: number) => {
+   `----
+
+Import trace for requested module:
+./src/components/SkillsSection.tsx
+./src/app/page.tsx
+
+
+> Build failed because of webpack errors
