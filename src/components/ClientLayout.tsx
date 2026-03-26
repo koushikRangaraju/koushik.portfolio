@@ -8,6 +8,7 @@ import CommandPalette from "@/components/CommandPalette";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AmbientBackground from "@/components/AmbientBackground";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const CustomCursorHUD = dynamic(() => import("@/components/CustomCursorHUD"), { ssr: false });
 const CinematicLoader = dynamic(() => import("@/components/CinematicLoader"), { ssr: false });
@@ -27,15 +28,17 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           transition={{ duration: 1.2, ease: "easeInOut" }}
           className="contents"
         >
-          <AmbientBackground />
-          <KonamiListener />
-          <CustomCursorHUD />
-          <CommandPalette />
-          <Navbar />
-          <main className="min-h-screen relative z-10 w-full">
-            {children}
-          </main>
-          <Footer />
+          <SmoothScrollProvider>
+            <AmbientBackground />
+            <KonamiListener />
+            <CustomCursorHUD />
+            <CommandPalette />
+            <Navbar />
+            <main className="min-h-screen relative z-10 w-full">
+              {children}
+            </main>
+            <Footer />
+          </SmoothScrollProvider>
         </motion.div>
       )}
     </AnimatePresence>

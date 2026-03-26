@@ -78,7 +78,7 @@ export default function SkillsSection() {
         { transform: "rotate(360deg) translateZ(0)" }
       ],
       {
-        duration: 10000, // 10 seconds for a full rotation (FASTER normal speed)
+        duration: 20000, // Increased to 20s for a more majestic and smooth "normal" rotation
         iterations: Infinity,
         easing: "linear"
       }
@@ -98,18 +98,18 @@ export default function SkillsSection() {
       lastScrollY = window.scrollY;
       lastScrollTime = now;
       
-      // Calculate scroll speed (boost factor) - massively increased sensitivity!
-      const scrollVelocity = Math.min((dy / dtScroll) * 8, 25);
-      targetRate = 1 + scrollVelocity; // min playbackRate is 1
+      // Calculate scroll speed (boost factor)
+      const scrollVelocity = Math.min((dy / dtScroll) * 12, 35); // Slightly more sensitive but capped
+      targetRate = 1 + scrollVelocity; 
       
       clearTimeout(resetTimer);
       // Quickly decay back to normal speed when scroll stops
-      resetTimer = setTimeout(() => { targetRate = 1; }, 250);
+      resetTimer = setTimeout(() => { targetRate = 1; }, 150);
     };
 
     const updatePlaybackRate = () => {
-      // Smoothly lerp the playback rate
-      currentRate += (targetRate - currentRate) * 0.15;
+      // Smoother LERP for playback rate (0.08 instead of 0.15 for more fluid transitions)
+      currentRate += (targetRate - currentRate) * 0.08;
       animation.playbackRate = currentRate;
       rafId = requestAnimationFrame(updatePlaybackRate);
     };
