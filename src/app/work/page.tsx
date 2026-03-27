@@ -20,7 +20,7 @@ const PROJECTS = [
     category: ["All", "Cloud", "Frontend"],
     description: "A responsive educational single-page website explaining cloud computing concepts in simple, easy-to-understand language.",
     tech: ["HTML", "CSS", "AWS EC2"],
-    link: "https://cloudcompass.bolt.host/",
+    link: "https://cloudcompassrk.vercel.app/",
   },
 ];
 

@@ -23,6 +23,11 @@ export default function HeroSection() {
     },
   };
 
+  const gpuProps = {
+    style: { willChange: "transform, opacity" },
+    className: "transform-gpu"
+  };
+
   return (
     <section className="relative w-full min-h-[100vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 mx-auto max-w-[1400px]">
       
@@ -36,15 +41,17 @@ export default function HeroSection() {
         <div className="flex-1 flex flex-col items-start w-full">
           <motion.h1 
             variants={itemVars}
-            className="font-display font-[900] text-white leading-[1] tracking-tight m-0 p-0"
-            style={{ fontSize: "clamp(80px, 12vw, 160px)" }}
+            {...gpuProps}
+            className="font-display font-[900] text-white leading-[1] tracking-tight m-0 p-0 transform-gpu"
+            style={{ fontSize: "clamp(80px, 12vw, 160px)", willChange: "transform, opacity" }}
           >
             KOUSHIK
           </motion.h1>
 
           <motion.p 
             variants={itemVars}
-            className="mt-6 text-[clamp(24px,4vw,40px)] leading-[1.2] text-[#aaaaaa] font-body max-w-3xl"
+            {...gpuProps}
+            className="mt-6 text-[clamp(24px,4vw,40px)] leading-[1.2] text-[#aaaaaa] font-body max-w-3xl transform-gpu"
           >
             <span className="font-[300]">I design and build products that </span>
             <span className="text-white font-[500]">deliver real impact.</span>
@@ -98,7 +105,8 @@ export default function HeroSection() {
         {/* RIGHT PHOTO BLOCK */}
         <motion.div
           variants={itemVars}
-          className="relative shrink-0 pr-8 md:pr-0"
+          {...gpuProps}
+          className="relative shrink-0 pr-8 md:pr-0 transform-gpu"
         >
           <div className="relative w-[280px] h-[280px] md:w-[360px] md:h-[360px] lg:w-[420px] lg:h-[420px] rounded-full overflow-hidden border border-white/10 ring-1 ring-white/5 shadow-[0_0_60px_rgba(255,255,255,0.05)]">
             <div className="absolute inset-0 bg-surface-card" />

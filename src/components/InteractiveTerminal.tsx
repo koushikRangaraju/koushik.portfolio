@@ -56,7 +56,7 @@ const COMMANDS: Record<string, string | JSX.Element> = {
         <br/><span className="text-white/70">Full Stack Social Networking (Spring Boot, MySQL)</span>
       </div>
       <div>
-        <a href="https://cloudcompass.bolt.host/" target="_blank" rel="noreferrer" className="text-accent-blue hover:underline">2. Cloud Compass ↗</a>
+        <a href="https://cloudcompassrk.vercel.app/" target="_blank" rel="noreferrer" className="text-accent-blue hover:underline">2. Cloud Compass ↗</a>
         <br/><span className="text-white/70">Responsive Educational Cloud Concepts (HTML, AWS EC2)</span>
       </div>
     </div>

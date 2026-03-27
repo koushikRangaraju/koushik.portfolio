@@ -39,7 +39,7 @@ function Marquee({ items, reverse = false }: { items: typeof ROW_1, reverse?: bo
   return (
     <div className="overflow-hidden whitespace-nowrap flex w-full flex-nowrap py-2 mask-edges-skills">
       <motion.div 
-        className="flex gap-4 items-center flex-nowrap shrink-0"
+        className="flex gap-4 items-center flex-nowrap shrink-0 transform-gpu"
         style={{ willChange: "transform" }}
         animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
         transition={{ duration: 40, ease: "linear", repeat: Infinity }}
@@ -98,21 +98,21 @@ export default function SkillsSection() {
       // Smoothly animate the timeScale (speed multiplier) using GSAP
       gsap.to(rotation, {
         timeScale: targetTimeScale,
-        duration: 0.4,
+        duration: 0.6,
         ease: "power2.out",
         overwrite: true
       });
       
       clearTimeout(resetTimer);
-      // Decay back to normal speed smoothly
+      // Decay back to normal speed smoothly with a longer, more organic feel
       resetTimer = setTimeout(() => { 
         gsap.to(rotation, {
           timeScale: 1,
-          duration: 0.8,
-          ease: "power2.inOut",
+          duration: 1.5,
+          ease: "expo.out",
           overwrite: true
         });
-      }, 100);
+      }, 150);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -129,7 +129,7 @@ export default function SkillsSection() {
       
       {/* BACKGROUND ROTATING WHEEL - HARDWARE ACCELERATED */}
       <div
-        className="absolute top-1/2 left-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] opacity-[0.3] pointer-events-none z-0"
+        className="absolute top-1/2 left-1/2 w-[600px] md:w-[900px] h-[600px] md:h-[900px] opacity-[0.3] pointer-events-none z-0 transform-gpu"
         style={{ transform: "translate(-50%, -50%)" }}
       >
         <div ref={wheelRef} className="w-full h-full" style={{ willChange: "transform" }}>

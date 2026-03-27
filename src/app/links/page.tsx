@@ -20,6 +20,7 @@ const LINKS = [
     category: "Professional",
     items: [
       { name: "Portfolio", url: "/", icon: User, color: "#10b981" },
+      { name: "Cloud Compass", url: "https://cloudcompassrk.vercel.app/", icon: Globe, color: "#3b82f6" },
       { name: "GeeksforGeeks", url: "https://www.geeksforgeeks.org/", icon: Globe, color: "#2f8d46" },
       { name: "Resume", url: "/resume.pdf", icon: Briefcase, color: "#f59e0b" },
     ]
@@ -27,7 +28,7 @@ const LINKS = [
   {
     category: "Contact",
     items: [
-      { name: "Email", url: "mailto:koushik.rangaraju@example.com", icon: Mail, color: "#ef4444" },
+      { name: "Email", url: "mailto:koushikrangaraju@gmail.com", icon: Mail, color: "#ef4444" },
       { name: "Guestbook", url: "/guestbook", icon: MessageSquare, color: "#8b5cf6" },
     ]
   }

@@ -28,10 +28,10 @@ const PROJECTS = [
       "Deployed on AWS EC2 and managed version control with Git and GitHub"
     ],
     tech: ["HTML", "CSS", "AWS EC2", "Git", "GitHub"],
-    link: "https://cloudcompass.bolt.host/",
-    desktopSrc: "https://api.microlink.io/?url=https://cloudcompass.bolt.host/&screenshot=true&meta=false&embed=screenshot.url",
-    mobile1Src: "https://api.microlink.io/?url=https://cloudcompass.bolt.host/&screenshot=true&meta=false&embed=screenshot.url",
-    mobile2Src: "https://api.microlink.io/?url=https://cloudcompass.bolt.host/&screenshot=true&meta=false&embed=screenshot.url"
+    link: "https://cloudcompassrk.vercel.app/",
+    desktopSrc: "https://api.microlink.io/?url=https://cloudcompassrk.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+    mobile1Src: "https://api.microlink.io/?url=https://cloudcompassrk.vercel.app/&screenshot=true&meta=false&embed=screenshot.url",
+    mobile2Src: "https://api.microlink.io/?url=https://cloudcompassrk.vercel.app/&screenshot=true&meta=false&embed=screenshot.url"
   },
 ];
 
