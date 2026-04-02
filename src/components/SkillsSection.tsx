@@ -125,7 +125,7 @@ export default function SkillsSection() {
   }, []);
 
   return (
-    <section ref={containerRef} id="skills" className="w-full pt-20 pb-24 relative z-10 overflow-hidden flex flex-col items-center">
+    <section ref={containerRef} id="skills" className="w-full pt-20 pb-24 relative z-10 overflow-hidden flex flex-col items-center" style={{ contain: "layout paint" }}>
       
       {/* BACKGROUND ROTATING WHEEL - HARDWARE ACCELERATED */}
       <div
@@ -187,7 +187,7 @@ export default function SkillsSection() {
       </div>
 
       {/* BOTTOM TICKER (parthh.in exact spec) */}
-      <div className="w-full relative z-10 border-y border-[#1f1f1f] bg-[#0a0a0a]/80 backdrop-blur-md py-3 overflow-hidden flex whitespace-nowrap group">
+      <div className="w-full relative z-10 border-y border-[#1f1f1f] bg-[#0a0a0a] py-3 overflow-hidden flex whitespace-nowrap group">
         <motion.div
           animate={{ x: ["0%", "-50%"] }}
           transition={{ ease: "linear", duration: 30, repeat: Infinity }}

@@ -40,7 +40,7 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0], index: n
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, margin: "-50px", amount: 0.1 }}
       transition={{ duration: 0.4 }}
       style={{ willChange: "transform, opacity, box-shadow" }}
       className="group relative w-full rounded-[16px] bg-[#111111] border border-[#1f1f1f] p-8 md:p-10 mb-12 transition-all duration-300 hover:scale-[1.02] transform-gpu hover:border-accent-emerald hover:shadow-[0_0_40px_rgba(16,185,129,0.1)] flex flex-col lg:flex-row gap-12 overflow-hidden"
@@ -116,7 +116,7 @@ export default function ProjectsSection() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: "-50px", amount: 0.1 }}
         transition={{ duration: 0.4 }}
         style={{ willChange: "transform, opacity" }}
         className="mb-12"

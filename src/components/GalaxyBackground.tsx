@@ -14,15 +14,15 @@ export default function GalaxyBackground() {
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
     camera.position.z = 500;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true, powerPreference: "high-performance" });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
     containerRef.current.appendChild(renderer.domElement);
 
     scene.fog = new THREE.Fog("#020408", 400, 2000);
 
     // --- STAR FIELD ---
-    const starCount = 8000;
+    const starCount = 5000;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
     const colors = new Float32Array(starCount * 3);
@@ -65,10 +65,15 @@ export default function GalaxyBackground() {
     let frameId: number;
     let targetX = 0;
     let targetY = 0;
+    let cachedScrollY = window.scrollY;
 
     const onMouseMove = (event: MouseEvent) => {
       targetX = (event.clientX / window.innerWidth - 0.5) * 0.05;
       targetY = (event.clientY / window.innerHeight - 0.5) * 0.05;
+    };
+
+    const onScroll = () => {
+      cachedScrollY = window.scrollY;
     };
 
     const onResize = () => {
@@ -77,7 +82,8 @@ export default function GalaxyBackground() {
       renderer.setSize(window.innerWidth, window.innerHeight);
     };
 
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
 
     const animate = () => {
@@ -85,10 +91,7 @@ export default function GalaxyBackground() {
       stars.rotation.y += 0.0002;
       stars.rotation.x += (targetY - stars.rotation.x) * 0.05;
       stars.rotation.y += (targetX - stars.rotation.y) * 0.05;
-
-      const scrollY = window.scrollY;
-      camera.position.y = -scrollY * 0.05;
-
+      camera.position.y = -cachedScrollY * 0.05;
       renderer.render(scene, camera);
     };
 
@@ -96,6 +99,7 @@ export default function GalaxyBackground() {
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
       cancelAnimationFrame(frameId);
       if (containerRef.current && renderer.domElement) {
