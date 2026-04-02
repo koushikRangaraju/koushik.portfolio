@@ -38,11 +38,9 @@ function Marquee({ items, reverse = false }: { items: typeof ROW_1, reverse?: bo
 
   return (
     <div className="overflow-hidden whitespace-nowrap flex w-full flex-nowrap py-2 mask-edges-skills">
-      <motion.div 
-        className="flex gap-4 items-center flex-nowrap shrink-0 transform-gpu"
+      <div 
+        className={`flex gap-4 items-center flex-nowrap shrink-0 transform-gpu ${reverse ? 'animate-[marquee-reverse_40s_linear_infinite]' : 'animate-[marquee_40s_linear_infinite]'}`}
         style={{ willChange: "transform" }}
-        animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
       >
         {renderItems.map((item, idx) => (
           <div 
@@ -58,7 +56,7 @@ function Marquee({ items, reverse = false }: { items: typeof ROW_1, reverse?: bo
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
@@ -188,16 +186,14 @@ export default function SkillsSection() {
 
       {/* BOTTOM TICKER (parthh.in exact spec) */}
       <div className="w-full relative z-10 border-y border-[#1f1f1f] bg-[#0a0a0a] py-3 overflow-hidden flex whitespace-nowrap group">
-        <motion.div
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 30, repeat: Infinity }}
-          className="flex whitespace-nowrap shrink-0 group-hover:[animation-play-state:paused] cursor-pointer"
+        <div
+          className="flex whitespace-nowrap shrink-0 animate-[marquee_30s_linear_infinite] group-hover:[animation-play-state:paused] cursor-pointer transform-gpu"
           style={{ willChange: "transform" }}
         >
           <span className="font-mono text-[11px] text-[#888888] tracking-widest uppercase px-4">
             {attributes} {attributes} {attributes} {attributes}
           </span>
-        </motion.div>
+        </div>
       </div>
 
       {/* Edge Masking via global style injected via component style is generally fine but let's use a class if it causes issues */}
@@ -205,6 +201,14 @@ export default function SkillsSection() {
         .mask-edges-skills {
           mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
           -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        @keyframes marquee {
+          from { transform: translateX(0%); }
+          to { transform: translateX(-50%); }
+        }
+        @keyframes marquee-reverse {
+          from { transform: translateX(-50%); }
+          to { transform: translateX(0%); }
         }
       `}</style>
 

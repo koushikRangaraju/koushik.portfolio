@@ -69,7 +69,7 @@ export default function AntiGravityClock() {
     >
       {/* BACKGROUND AMBIENT GLOW */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[400px] h-[400px] rounded-full bg-white/5 blur-[100px] opacity-50 group-hover:opacity-80 transition-opacity duration-1000" />
+        <div className="w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.06)_0%,_transparent_60%)] opacity-50 group-hover:opacity-80 transition-opacity duration-1000" />
       </div>
 
       {/* FLOATING & PARALLAX WRAPPER */}
@@ -100,11 +100,11 @@ export default function AntiGravityClock() {
             style={{ transform: 'translateZ(20px)' }}
           >
             {/* INNER FACE SHADING & GLASS REFLECTION */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#1a1a1a] to-black opacity-40 shadow-[inset_0_0_100px_rgba(0,0,0,0.9)]" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#1a1a1a] to-black opacity-40 shadow-inner" />
             
             {/* OCCASIONAL LIGHT SWEEP REFLECTION */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/[0.03] to-transparent 
-                            animate-[pulse_10s_ease-in-out_infinite] mix-blend-overlay pointer-events-none" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/[0.06] to-transparent 
+                            animate-[pulse_10s_ease-in-out_infinite] pointer-events-none" />
 
             {/* MINUTE & HOUR TICKS */}
             {mounted && (
